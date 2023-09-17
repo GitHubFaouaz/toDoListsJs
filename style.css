@@ -37,7 +37,7 @@ h2
 	color: #fff;
 	font-size: 1.75em;
 	margin-bottom: 10px;
-	text-shadow: -1px 1px 0px #000000, -3px 1px 0px #000000 , -4px 3px 0px #000000;
+	text-shadow: -1px 1px 0px #000000, -3px 1px 0px #4f4f4f, -4px 3px 0px #000000;
 	box-shadow: -1px -1px 18px 3px black inset;
 }
 #inputBx 
