@@ -15,6 +15,7 @@ let addItem = (inputBx) => {
   let listItem = document.createElement("li");
   listItem.innerHTML = `${inputBx}<i></i>`;
 
+  // lors du click sur un element li
   listItem.addEventListener("click", function () {
     this.classList.toggle("done");
   });
