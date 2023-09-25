@@ -20,9 +20,9 @@ let addItem = (inputBx) => {
     this.classList.toggle("done");
   });
 
-  // listItem.querySelector("i").addEventListener("click", function () {
-  //   listItem.remove();
-  // });
+  listItem.querySelector("i").addEventListener("click", function () {
+    listItem.remove();
+  });
 
   list.appendChild(listItem);
 };
