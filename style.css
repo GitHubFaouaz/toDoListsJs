@@ -97,7 +97,7 @@ h2
 	border-left: 0px solid #fff;
 	border-bottom: 0px solid #fff;
 	transform: rotate(315deg);
-	transition: 1s;
+	/* transition: 1s; */
 	/* animation: deleteLi 1s ease-in-out both reverse; */
 
 }
