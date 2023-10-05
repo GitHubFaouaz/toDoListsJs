@@ -12,8 +12,19 @@ inputBx.addEventListener("keyup", function (event) {
 });
 
 let addItem = (inputBx) => {
+  // Récupérer les éléments existants du localStorage
+  let existingItems = JSON.parse(localStorage.getItem("items")) || [];
+
+  // Ajouter le nouvel élément au tableau existant
+  existingItems.push(inputBx);
+
+  // Enregistrer le tableau mis à jour dans le localStorage
+  localStorage.setItem("items", JSON.stringify(existingItems));
+
   let listItem = document.createElement("li");
   listItem.innerHTML = `${inputBx}<i></i>`;
+
+  // localStorage.setItem("item", JSON.stringify(inputBx));
 
   // lors du click sur un element li
   listItem.addEventListener("click", function () {
