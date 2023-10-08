@@ -1,6 +1,21 @@
 let inputBx = document.querySelector("#inputBx");
 let list = document.querySelector("#list");
 
+let existingItems = JSON.parse(localStorage.getItem("Todos")) || [];
+existingItems.forEach((todo) => {
+  let listItem = document.createElement("li");
+  listItem.innerHTML = `${todo}<i></i>`;
+  listItem.addEventListener("click", function () {
+    this.classList.toggle("done");
+  });
+
+  listItem.querySelector("i").addEventListener("click", function () {
+    listItem.remove();
+  });
+
+  list.appendChild(listItem);
+});
+
 // L'événement keyup est un événement JavaScript qui se déclenche lorsqu'une touche du clavier est relâchée  Cet événement est souvent utilisé pour détecter les actions de l'utilisateur liées au clavier, telles que la saisie de texte.
 inputBx.addEventListener("keyup", function (event) {
   console.log("event", event);
@@ -14,7 +29,6 @@ inputBx.addEventListener("keyup", function (event) {
 
 let addItem = (inputBx) => {
   // Récupérer les éléments existants du localStorage
-  let existingItems = JSON.parse(localStorage.getItem("Todos")) || [];
 
   // Ajouter le nouvel élément au tableau existant
   existingItems.push(inputBx);
@@ -37,7 +51,6 @@ let addItem = (inputBx) => {
   });
 
   list.appendChild(listItem);
-  // saveLocalStorage(listItem.value);
 };
 
 // const saveLocalStorage = (item) => {
@@ -45,9 +58,9 @@ let addItem = (inputBx) => {
 //   if (localStorage.getItem("todos") === null) {
 //     tabTodos = [];
 //   } else {
-//     tabTodos = JSON.parse(localStorage.setItem("todos"));
+//     tabTodos = JSON.parse(localStorage.getItem("todos"));
 //   }
 //   tabTodos.push(item);
 
-//   tabTodos = localStorage.getItem(JSON.stringify("todos"));
+//   tabTodos = localStorage.setItem(JSON.stringify("todos"));
 // };
