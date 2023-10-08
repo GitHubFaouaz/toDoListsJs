@@ -7,19 +7,20 @@ inputBx.addEventListener("keyup", function (event) {
   //  La fonction de rappel commence par vérifier si la touche qui a été relâchée est la touche "Enter" (touche Entrée) en utilisant event.key
   if (event.key == "Enter") {
     addItem(this.value); //Si la touche "Enter" est pressée, la fonction addItem(this.value) est appelée
+    // saveLocalStorage(this.value);
     this.value = ""; // Après avoir ajouté l'élément à la liste, la valeur du champ de texte est réinitialisée à une chaîne vide (this.value = "")
   }
 });
 
 let addItem = (inputBx) => {
   // Récupérer les éléments existants du localStorage
-  let existingItems = JSON.parse(localStorage.getItem("items")) || [];
+  let existingItems = JSON.parse(localStorage.getItem("Todos")) || [];
 
   // Ajouter le nouvel élément au tableau existant
   existingItems.push(inputBx);
 
   // Enregistrer le tableau mis à jour dans le localStorage
-  localStorage.setItem("items", JSON.stringify(existingItems));
+  localStorage.setItem("Todos", JSON.stringify(existingItems));
 
   let listItem = document.createElement("li");
   listItem.innerHTML = `${inputBx}<i></i>`;
@@ -36,4 +37,17 @@ let addItem = (inputBx) => {
   });
 
   list.appendChild(listItem);
+  // saveLocalStorage(listItem.value);
 };
+
+// const saveLocalStorage = (item) => {
+//   let tabTodos = [];
+//   if (localStorage.getItem("todos") === null) {
+//     tabTodos = [];
+//   } else {
+//     tabTodos = JSON.parse(localStorage.setItem("todos"));
+//   }
+//   tabTodos.push(item);
+
+//   tabTodos = localStorage.getItem(JSON.stringify("todos"));
+// };
