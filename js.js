@@ -3,9 +3,9 @@ let list = document.querySelector("#list");
 
 let existingItems = JSON.parse(localStorage.getItem("Todos")) || [];
 
-// existingItems.forEach((todo) => {
-//   addItem(todo);
-// });
+existingItems.forEach((todo) => {
+  addItem(todo);
+});
 
 // L'événement keyup est un événement JavaScript qui se déclenche lorsqu'une touche du clavier est relâchée  Cet événement est souvent utilisé pour détecter les actions de l'utilisateur liées au clavier, telles que la saisie de texte.
 inputBx.addEventListener("keyup", function (event) {
@@ -19,31 +19,34 @@ inputBx.addEventListener("keyup", function (event) {
 });
 
 function addItem(todo) {
-  let listItem = document.createElement("li");
-  listItem.innerHTML = `${todo}<i></i>`;
+  let item = document.createElement("li");
+  item.innerHTML = `${todo}<i></i>`;
 
-  listItem.addEventListener("click", function () {
+  item.addEventListener("click", function () {
     this.classList.toggle("done");
   });
 
-  listItem.querySelector("i").addEventListener("click", function () {
-    listItem.remove();
-    let indexTodo = existingItems.indexOf(todo);
-
-    if (indexTodo > -1) {
-      existingItems.splice(indexTodo, 1);
-    }
-
-    // Enregistrer le tableau mis à jour dans le localStorage
-    localStorage.setItem("Todos", JSON.stringify(existingItems));
+  item.querySelector("i").addEventListener("click", function () {
+    item.remove();
   });
 
   addLocalStorage(todo);
-
-  list.appendChild(listItem);
+  // if (existingItems.includes(todo)) {
+  //   console.log("deja ajouté dans la listeitem");
+  // } else {
+  list.appendChild(item);
+  // }
 }
 
 function addLocalStorage(text) {
-  existingItems.push(text);
-  localStorage.setItem("Todos", JSON.stringify(existingItems));
+  if (existingItems.includes(text)) {
+    console.log(text, "deja ajouté dans la liste");
+  } else {
+    existingItems.push(text);
+    localStorage.setItem("Todos", JSON.stringify(existingItems));
+  }
 }
+// function addLocalStorage(text) {
+//   existingItems.push(text);
+//   localStorage.setItem("Todos", JSON.stringify(existingItems));
+// }
