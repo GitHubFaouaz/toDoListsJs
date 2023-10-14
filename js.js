@@ -5,7 +5,6 @@ let existingItems = JSON.parse(localStorage.getItem("Todos")) || [];
 
 // existingItems.forEach((todo) => {
 //   addItem(todo);
-
 // });
 
 // L'événement keyup est un événement JavaScript qui se déclenche lorsqu'une touche du clavier est relâchée  Cet événement est souvent utilisé pour détecter les actions de l'utilisateur liées au clavier, telles que la saisie de texte.
@@ -29,14 +28,22 @@ function addItem(todo) {
 
   listItem.querySelector("i").addEventListener("click", function () {
     listItem.remove();
+    let indexTodo = existingItems.indexOf(todo);
+
+    if (indexTodo > -1) {
+      existingItems.splice(indexTodo, 1);
+    }
+
+    // Enregistrer le tableau mis à jour dans le localStorage
+    localStorage.setItem("Todos", JSON.stringify(existingItems));
   });
+
+  addLocalStorage(todo);
 
   list.appendChild(listItem);
 }
 
-function LocalStorage(text) {
+function addLocalStorage(text) {
   existingItems.push(text);
   localStorage.setItem("Todos", JSON.stringify(existingItems));
-  let listItem = createListItem(text);
-  list.appendChild(listItem);
 }
