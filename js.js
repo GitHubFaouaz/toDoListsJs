@@ -1,5 +1,6 @@
 let inputBx = document.querySelector("#inputBx");
 let list = document.querySelector("#list");
+let error = document.querySelector("#error");
 
 let existingItems = JSON.parse(localStorage.getItem("Todos")) || [];
 
@@ -30,23 +31,19 @@ function addItem(todo) {
     item.remove();
   });
 
-  addLocalStorage(todo);
-  // if (existingItems.includes(todo)) {
-  //   console.log("deja ajouté dans la listeitem");
-  // } else {
-  list.appendChild(item);
-  // }
-}
-
-function addLocalStorage(text) {
-  if (existingItems.includes(text)) {
-    console.log(text, "deja ajouté dans la liste");
+  if (existingItems.includes(todo)) {
+    let errorPhrase = `${todo} est déjà dans la list`;
+    error.innerHTML = errorPhrase;
+    setTimeout(() => {
+      error.innerHTML = "";
+    }, 3000);
   } else {
-    existingItems.push(text);
-    localStorage.setItem("Todos", JSON.stringify(existingItems));
+    addLocalStorage(todo);
+    list.appendChild(item);
   }
 }
-// function addLocalStorage(text) {
-//   existingItems.push(text);
-//   localStorage.setItem("Todos", JSON.stringify(existingItems));
-// }
+
+function addLocalStorage(todo) {
+  existingItems.push(todo);
+  localStorage.setItem("Todos", JSON.stringify(existingItems));
+}
