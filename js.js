@@ -5,7 +5,6 @@ let error = document.querySelector("#error");
 let existingItems = JSON.parse(localStorage.getItem("Todos")) || [];
 
 existingItems.forEach((todo) => {
-  // addItem(todo);
   listLocalStorage(todo);
 });
 
@@ -14,25 +13,13 @@ inputBx.addEventListener("keyup", function (event) {
   console.log("event", event);
   //  La fonction de rappel commence par vérifier si la touche qui a été relâchée est la touche "Enter" (touche Entrée) en utilisant event.key
   if (event.key == "Enter") {
-    addItem(this.value); //Si la touche "Enter" est pressée, la fonction addItem(this.value) est appelée
+    addItemInput(this.value); //Si la touche "Enter" est pressée, la fonction addItem(this.value) est appelée
     // saveLocalStorage(this.value);
     this.value = ""; // Après avoir ajouté l'élément à la liste, la valeur du champ de texte est réinitialisée à une chaîne vide (this.value = "")
   }
 });
 
-function addItem(todo) {
-  let item = document.createElement("li");
-  item.innerHTML = `${todo}<i></i>`;
-
-  item.addEventListener("click", function () {
-    this.classList.toggle("done");
-  });
-
-  item.querySelector("i").addEventListener("click", function () {
-    item.remove();
-    removeItemFromLocalStorage(todo, existingItems);
-  });
-
+function addItemInput(todo) {
   if (existingItems.includes(todo)) {
     let errorPhrase = `${todo} est déjà dans la list`;
     error.innerHTML = errorPhrase;
@@ -41,7 +28,7 @@ function addItem(todo) {
     }, 3000);
   } else {
     addLocalStorage(todo, existingItems);
-    list.appendChild(item);
+    addItem(todo);
   }
 }
 
@@ -59,6 +46,10 @@ function removeItemFromLocalStorage(text, listTodo) {
 }
 
 function listLocalStorage(todo) {
+  addItem(todo);
+}
+
+function addItem(todo) {
   let item = document.createElement("li");
   item.innerHTML = `${todo}<i></i>`;
 
@@ -70,15 +61,5 @@ function listLocalStorage(todo) {
     item.remove();
     removeItemFromLocalStorage(todo, existingItems);
   });
-
-  // if (existingItems.includes(todo)) {
-  //   let errorPhrase = `${todo} est déjà dans la list`;
-  //   error.innerHTML = errorPhrase;
-  //   setTimeout(() => {
-  //     error.innerHTML = "";
-  //   }, 3000);
-  // } else {
-  //   addLocalStorage(todo, existingItems);
   list.appendChild(item);
-  // }
 }
