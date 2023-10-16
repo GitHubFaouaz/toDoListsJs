@@ -5,7 +5,8 @@ let error = document.querySelector("#error");
 let existingItems = JSON.parse(localStorage.getItem("Todos")) || [];
 
 existingItems.forEach((todo) => {
-  addItem(todo);
+  // addItem(todo);
+  listLocalStorage(todo);
 });
 
 // L'événement keyup est un événement JavaScript qui se déclenche lorsqu'une touche du clavier est relâchée  Cet événement est souvent utilisé pour détecter les actions de l'utilisateur liées au clavier, telles que la saisie de texte.
@@ -29,6 +30,7 @@ function addItem(todo) {
 
   item.querySelector("i").addEventListener("click", function () {
     item.remove();
+    removeItemFromLocalStorage(todo, existingItems);
   });
 
   if (existingItems.includes(todo)) {
@@ -38,12 +40,45 @@ function addItem(todo) {
       error.innerHTML = "";
     }, 3000);
   } else {
-    addLocalStorage(todo);
+    addLocalStorage(todo, existingItems);
     list.appendChild(item);
   }
 }
 
-function addLocalStorage(todo) {
-  existingItems.push(todo);
-  localStorage.setItem("Todos", JSON.stringify(existingItems));
+function addLocalStorage(todo, listTodo) {
+  listTodo.push(todo);
+  localStorage.setItem("Todos", JSON.stringify(listTodo));
+}
+
+function removeItemFromLocalStorage(text, listTodo) {
+  let index = listTodo.indexOf(text);
+  if (index > -1) {
+    listTodo.splice(index, 1);
+    localStorage.setItem("Todos", JSON.stringify(listTodo));
+  }
+}
+
+function listLocalStorage(todo) {
+  let item = document.createElement("li");
+  item.innerHTML = `${todo}<i></i>`;
+
+  item.addEventListener("click", function () {
+    this.classList.toggle("done");
+  });
+
+  item.querySelector("i").addEventListener("click", function () {
+    item.remove();
+    removeItemFromLocalStorage(todo, existingItems);
+  });
+
+  // if (existingItems.includes(todo)) {
+  //   let errorPhrase = `${todo} est déjà dans la list`;
+  //   error.innerHTML = errorPhrase;
+  //   setTimeout(() => {
+  //     error.innerHTML = "";
+  //   }, 3000);
+  // } else {
+  //   addLocalStorage(todo, existingItems);
+  list.appendChild(item);
+  // }
 }
