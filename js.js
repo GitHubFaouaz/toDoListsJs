@@ -5,17 +5,15 @@ let error = document.querySelector("#error");
 let existingItems = JSON.parse(localStorage.getItem("Todos")) || [];
 
 existingItems.forEach((todo) => {
-  listLocalStorage(todo);
+  contentLocalStorage(todo);
 });
 
 // L'événement keyup est un événement JavaScript qui se déclenche lorsqu'une touche du clavier est relâchée  Cet événement est souvent utilisé pour détecter les actions de l'utilisateur liées au clavier, telles que la saisie de texte.
 inputBx.addEventListener("keyup", function (event) {
-  console.log("event", event);
-  //  La fonction de rappel commence par vérifier si la touche qui a été relâchée est la touche "Enter" (touche Entrée) en utilisant event.key
+  // console.log("event", event);
   if (event.key == "Enter") {
-    addItemInput(this.value); //Si la touche "Enter" est pressée, la fonction addItem(this.value) est appelée
-    // saveLocalStorage(this.value);
-    this.value = ""; // Après avoir ajouté l'élément à la liste, la valeur du champ de texte est réinitialisée à une chaîne vide (this.value = "")
+    addItemInput(this.value);
+    this.value = "";
   }
 });
 
@@ -32,20 +30,20 @@ function addItemInput(todo) {
   }
 }
 
-function addLocalStorage(todo, listTodo) {
-  listTodo.push(todo);
-  localStorage.setItem("Todos", JSON.stringify(listTodo));
+function addLocalStorage(todo, listTodos) {
+  listTodos.push(todo);
+  localStorage.setItem("Todos", JSON.stringify(listTodos));
 }
 
-function removeItemFromLocalStorage(text, listTodo) {
-  let index = listTodo.indexOf(text);
+function removeItemFromLocalStorage(text, listTodos) {
+  let index = listTodos.indexOf(text);
   if (index > -1) {
-    listTodo.splice(index, 1);
-    localStorage.setItem("Todos", JSON.stringify(listTodo));
+    listTodos.splice(index, 1);
+    localStorage.setItem("Todos", JSON.stringify(listTodos));
   }
 }
 
-function listLocalStorage(todo) {
+function contentLocalStorage(todo) {
   addItem(todo);
 }
 
@@ -61,5 +59,6 @@ function addItem(todo) {
     item.remove();
     removeItemFromLocalStorage(todo, existingItems);
   });
+
   list.appendChild(item);
 }
