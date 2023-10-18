@@ -1,5 +1,7 @@
 # toDoListsJs
 
+photo
+
 # Contexte :
 
 Cette application de liste de tâches permet à l'utilisateur de gérer une liste de tâches enregistrées localement dans le navigateur. L'utilisateur peut ajouter de nouvelles tâches à la liste, marquer des tâches comme "terminées", supprimer des tâches de la liste et voir la liste mise à jour à chaque interaction.
