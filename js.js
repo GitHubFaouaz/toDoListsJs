@@ -19,7 +19,7 @@ inputBx.addEventListener("keyup", function (event) {
 
 function addItemInput(todo) {
   if (existingItems.includes(todo)) {
-    let errorPhrase = `${todo} est déjà dans la list`;
+    let errorPhrase = `${todo} est déjà dans la liste`;
     error.innerHTML = errorPhrase;
     setTimeout(() => {
       error.innerHTML = "";
