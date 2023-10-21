@@ -1,6 +1,6 @@
 # toDoListsJs
 
-photo
+<!-- ![toDoList](images/ohmyfood.webp?raw=true "Cover Ohmyfood OpenClassrooms ") -->
 
 # Contexte :
 
@@ -10,3 +10,6 @@ L'application vérifie si une tâche ajoutée est déjà présente dans la liste
 # Technos :
 
 HTML5 / CSS3 /JAVASCRIPT
+
+- Voir le site web :https://githubfaouaz.github.io/toDoListsJs/
+- Portfolio : ''
