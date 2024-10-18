@@ -12,4 +12,4 @@ L'application vérifie si une tâche ajoutée est déjà présente dans la liste
 HTML5 / CSS3 /JAVASCRIPT
 
 - Voir le site web :https://githubfaouaz.github.io/toDoListsJs/
-- Portfolio : 'http://www.faouaz.com'
+- Portfolio : http://www.faouaz.com
